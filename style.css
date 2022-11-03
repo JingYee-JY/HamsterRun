@@ -1,0 +1,330 @@
+body{
+    background-color: #82C6CC;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    position: fixed;
+    padding: 0;
+    margin: 0;
+}
+
+*{
+    user-select: none;
+    font-family: 'Lilita One', cursive;
+}
+
+.start,
+.game,
+.wellDone,
+.final{
+    position: absolute;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    place-items: center;
+    gap: 2vh;
+    width: 100%;
+    height: 100%;
+}
+
+.start{
+    justify-content: flex-end;
+}
+
+.game{
+    gap: 0;
+    position: relative;
+    overflow: hidden;
+    justify-content: flex-end;
+    align-items: flex-start;
+}
+
+.startButton, .readyButton, .againButton, .homeButton{
+    width: 100%;
+    position: relative;
+    align-self: center;
+    background-color: #E1B590;
+    box-shadow: 0px 8px #C59266;
+    border: 0px;
+    display: flex;
+    justify-content: space-between;
+    text-decoration: none;
+    border-radius: 10px;
+    padding: 5% 5%;
+    margin-bottom: 10px;
+    color: white;
+    font-size: 25px;
+}
+
+.preview{
+    width: 100%;
+    margin-top: 75px;
+    margin-bottom: -150px;
+}
+
+.homeButton{
+    background-color: #C59266;
+    box-shadow: 0px 8px #E1B590;
+}
+
+.startButton p, .readyButton, .againButton p, .homeButton p {
+    margin: 3%;
+    margin-right: 6%;
+}
+
+.startButton{
+    margin-bottom: 70px;
+}
+
+.startButton:active, .readyButton:active, .againButton:active,.homeButton:active{
+    animation: animate 0.2s;
+    -webkit-animation: animate 0.2s;
+}
+
+@keyframes animate{
+    0%{
+        transform: rotate(0deg) translateX(0px);
+        -webkit-transform: rotate(0deg) translateX(0px);
+    }
+    25%{
+        transform: rotate(-20deg) translateX(-10px);
+        -webkit-transform: rotate(-20deg) translateX(-10px);
+    }
+    50%{
+        transform: rotate(0deg) translateX(0px);
+        -webkit-transform: rotate(0deg) translateX(0px);
+    }
+    75%{
+        transform: rotate(20deg) translateX(10px);
+        -webkit-transform: rotate(20deg) translateX(10px);
+    }
+    100%{
+        transform: rotate(0deg) translateX(0px);
+        -webkit-transform: rotate(0deg) translateX(0px);
+    }
+}
+
+.words{
+    font-size: 20px;
+    width: 100%;
+    margin: 0 !important;
+    justify-content: center;
+    align-items: center;
+    display: flex;
+    font-weight: 500;
+}
+
+.arrowHead{
+    margin-right: 10px;
+    max-width: 15px;
+    height: auto;
+}
+
+.title{
+    position: relative;
+    margin: 0%;
+    padding: 0%;
+    width: 50%;
+    height: auto;
+}
+
+.hide{
+    display: none;
+    visibility: hidden;
+}
+
+.hidden{
+    visibility: hidden;
+}
+
+.popUp, .ready{
+    position: fixed;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    place-items: center;
+    justify-content: center;
+    gap: 5vh;
+    width: 100%;
+    height: 100vh;
+    z-index: 20;
+    top: 0;
+    background-color: transparent;
+}
+
+.background{
+    background-color: #9B9B9B;
+    padding: 20px;
+    position: relative;
+    width: 70%;
+    height: auto;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+.text{
+    color: white;
+    font-size: 30px;
+    margin: 0px;
+}
+
+.image{
+    margin: 5px 0px;
+}
+
+.food{
+    width: 30%;
+}
+
+.grounds{
+    width: 100%;
+    height: 195px;
+    display: flex;
+    position: relative;
+}
+
+.ground{
+    position: absolute;
+    bottom: 0;
+    width: 2600px;
+    overflow: visible;
+}
+
+.top{
+    position: absolute;
+    justify-content: center;
+    align-items: center;
+    top: 0%;
+    width: 100%;
+}
+
+.goalText{
+    text-align: center;
+    margin-left: 10px;
+}
+
+.goal{
+    display: grid;
+    grid-template-columns:repeat(4,25%);;
+    justify-content: center;
+    overflow-wrap: normal;
+}
+
+.goal img{
+    width: 100%;
+}
+
+.obsticle, .foodContainer{
+    left: calc(var(--left) * 1%);
+    margin-bottom: -5px;
+    display: flex;
+    z-index: 9;
+    height: 24%;
+    width: 100%;
+    position: relative;
+}
+
+.small, .smallFood{
+    position: absolute;
+    height: 50%;
+}
+.small{
+    bottom: 0;
+}
+
+.o1{
+    width: auto;
+    z-index: 10;
+}
+
+.o2{
+    width: auto;
+    z-index: 10;
+}
+
+.o3{
+    width: auto;
+    z-index: 10;
+}
+
+.hamster{
+    position: absolute;
+    left: 10px;
+    width: 150px;
+    z-index: 10;
+    bottom: 0;
+}
+
+@keyframes suspension {
+    100%{
+        transform: translateY(-1px);
+    }
+    50%{
+        transform: translateY(2px);
+    }
+    0%{
+        transform: translateY(-1px);
+    }
+}
+
+.f1{
+    top: 0;
+    width: auto;
+    z-index: 10;
+}
+
+.f2{
+    top: 0;
+    width: auto;
+    z-index: 10;
+}
+
+.f3{
+    top: 0;
+    width: auto;
+    z-index: 10;
+}
+
+.f4{
+    bottom: 0;
+    width: auto;
+    z-index: 10;
+}
+
+.jump{
+    animation: jump 1200ms;
+}
+
+.endImage{
+    width: 80%;
+}
+
+.endText{
+    font-size: 40px;
+    margin: 0px;
+}
+
+@keyframes jump{
+    0%{transform: translateY(0px);}
+    30%{transform: translateY(-100px);}
+    70%{transform: translateY(-100px);}
+    100%{transform: translateY(0px);}
+}
+
+/*mobile*/
+@media screen and (max-width: 767px){
+    .startButton, .readyButton, .againButton, .homeButton {
+    width: calc(100% - 100px);
+    justify-content: center;
+    align-items: center;
+    }
+}

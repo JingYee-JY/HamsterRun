@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hamster Run</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" 
+    href="https://fonts.googleapis.com/css2?family=Lilita+One&display=swap">
+</head>
+<body  onclick="Computerjump()" ontouchstart="jump()">
+    <div class="start">
+        <img class="title" src="./img/title.png">
+        <img class="preview" src="./img/preview.png">
+        <button class="startButton">
+            <p class="words"><img src="./img/arrow.png" class="arrowHead"> START GAME</p>
+        </button>
+    </div>
+    <div class="game hide">
+        <div class="popUp">
+            <div class="background">
+                <p class="text"></p>
+                <div class="image"></div>
+                <button class="readyButton">
+                    <p class="words">Ready</p>
+                </button>
+            </div>
+        </div>
+        <div class="top">
+            <h1 class="goalText"></h1>
+            <div class="goal">
+            </div>
+        </div>
+        <div class="obsticle">
+            <img class="smallFood f1 hidden" src="./img/food.png" alt="">
+            <img class="smallFood f2 hidden" src="./img/food.png" alt="">
+            <img class="smallFood f3 hidden" src="./img/food.png" alt="">
+            <img class="smallFood f4 hidden" src="./img/food.png" alt="">
+            <img class="hamster" src="./img/hamster.png">
+            <img class="small o1 hidden" src="./img/obstacle1.png" alt="">
+            <img class="small o2 hidden" src="./img/obstacle2.png" alt="">
+            <img class="small o3 hidden" src="./img/obstacle1.png" alt="">
+        </div>
+
+        <div class="grounds">
+            <img class="ground 1" src="./img/ground.png">
+            <img class="ground 2" src="./img/ground.png">
+        </div>
+    </div>
+
+    <div class="final hide">
+        <img class="endImage">
+        <p class="endText"></p>
+        <button class="againButton">
+            <p class="words"><img src="./img/again.png" class="arrowHead">Play again</p>
+        </button>
+        <button class="homeButton">
+            <p class="words"><img src="./img/home.png" class="arrowHead">Back to home</p>
+        </button>
+    </div>
+
+    <audio id="click" src="sound/click.wav"></audio>
+    <audio id="completed" src="./sound/completed.wav"></audio>
+    <audio id="lose" src="./sound/lose.wav"></audio>
+    
+    <script src="./script.js"></script>
+</body>
+</html>
