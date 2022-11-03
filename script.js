@@ -1,5 +1,5 @@
-const start = document.querySelector(".start");
 const body = document.querySelector("body");
+const start = document.querySelector(".start");
 const startButton = document.querySelector(".startButton");
 const game = document.querySelector(".game");
 const popUp = document.querySelector(".popUp");
@@ -29,6 +29,9 @@ let jumping;
 let curPos1;
 let curPos2;
 let once;
+let groundWidth;
+let spawnTime;
+let hamsterWidth;
 
 let o1Pos;
 let o2Pos;
@@ -38,6 +41,7 @@ let f1Pos;
 let f2Pos;
 let f3Pos;
 let f4Pos;
+let speed;
 
 let once1 = false
 let once2 = false
@@ -78,6 +82,7 @@ againButton.addEventListener("click", () =>{
         start.classList.remove("hide")
         goal.innerHTML = ""
         image.innerHTML = ""
+        hamster.style.animation = ""
     }, 200)
 })
 
@@ -95,6 +100,20 @@ function ready(){
     text.innerHTML = `Collect ${total} bowl of food`
     goalText.innerHTML = `${score} / ${total} Food:`
 
+    let border = game.getBoundingClientRect()
+    if(border.width > 500){
+        speed = 10
+        groundWidth = 5200
+        spawnTime = 1200
+        hamsterWidth = 320
+    }
+    if(border.width < 500){
+        speed = 5
+        groundWidth = 2600
+        spawnTime = 600
+        hamsterWidth = 160
+    }
+    
     ground.forEach(function(parts){
         console.log(ground[0])
         if(parts == ground[0]){
@@ -105,7 +124,7 @@ function ready(){
         }
         if(parts == ground[1]){
             console.log("2",parts)
-            curPos2 = 2600
+            curPos2 = groundWidth
             parts.style.left = curPos2 + "px"
         }
     })   
@@ -141,12 +160,10 @@ function ready(){
             parts.style.left = f3Pos + "px"
         }
         if(parts == food[3]){
-            f4Pos = 2600
+            f4Pos = groundWidth
             parts.style.left = f4Pos + "px"
         }
     })   
-
-
 
     for(let f = 0; f < total; f++){
         foodImage(image)
@@ -170,7 +187,7 @@ function spawnFood(item){
 
 function Computerjump(){
     let border = body.getBoundingClientRect();
-    if(border.width > 1200){
+    if(border.width > 1000){
         jump()
     }
 }
@@ -214,16 +231,16 @@ function moveGround(){
     console.log("S")
     ground.forEach(function(parts){
         if(parts == ground[0]){
-            curPos1 -= 5
-            if(curPos1 <= -2600){
-                curPos1 = 2600
+            curPos1 -= speed
+            if(curPos1 <= -groundWidth){
+                curPos1 = groundWidth
             }
             parts.style.left = curPos1 + "px"
         }
         if(parts == ground[1]){
-            curPos2 -= 5
-            if(curPos2 <= -2600){
-                curPos2 = 2600
+            curPos2 -= speed
+            if(curPos2 <= -groundWidth){
+                curPos2 = groundWidth
             }
             parts.style.left = curPos2 + "px"
         }
@@ -231,8 +248,8 @@ function moveGround(){
     
     obstacle.forEach(function(parts){
         if(parts == obstacle[0]){
-            o1Pos -= 5
-            if(o1Pos <= 600 && o1Pos >= 500 && once1 == false){
+            o1Pos -= speed
+            if(o1Pos <= spawnTime && o1Pos >= (spawnTime - 100) && once1 == false){
                 spawnObsticle(parts)
                 once1 = true
             }
@@ -241,14 +258,14 @@ function moveGround(){
                 once1 = false
                 parts.classList.add("hidden")
             }
-            if(o1Pos < 160 && o1Pos > 0 && jumping == false && !parts.classList.contains("hidden")){
+            if(o1Pos < hamsterWidth && o1Pos > 0 && jumping == false && !parts.classList.contains("hidden")){
                 checkLose()
             }
             parts.style.left = o1Pos + "px"
         }
         if(parts == obstacle[1]){
-            o2Pos -= 5
-            if(o2Pos <= 600 && o2Pos >= 500 && once2 == false){
+            o2Pos -= speed
+            if(o2Pos <= spawnTime && o2Pos >= (spawnTime - 100) && once2 == false){
                 spawnObsticle(parts)
                 once2 = true
             }
@@ -257,14 +274,14 @@ function moveGround(){
                 once2 = false
                 parts.classList.add("hidden")
             }
-            if(o2Pos < 160 && o2Pos > 0 && jumping == false && !parts.classList.contains("hidden")){
+            if(o2Pos < hamsterWidth && o2Pos > 0 && jumping == false && !parts.classList.contains("hidden")){
                 checkLose()
             }
             parts.style.left = o2Pos + "px"
         }
         if(parts == obstacle[2]){
-            o3Pos -= 5
-            if(o3Pos <= 600 && o3Pos >= 500 && once == false){
+            o3Pos -= speed
+            if(o3Pos <= spawnTime && o3Pos >= (spawnTime - 100) && once == false){
                 spawnObsticle(parts)
                 once = true
             }
@@ -273,7 +290,7 @@ function moveGround(){
                 once3 = false
                 parts.classList.add("hidden")
             }
-            if(o3Pos < 160 && o3Pos > 0 && jumping == false && !parts.classList.contains("hidden")){
+            if(o3Pos < hamsterWidth && o3Pos > 0 && jumping == false && !parts.classList.contains("hidden")){
                 checkLose()
             }
             parts.style.left = o3Pos + "px"
@@ -282,8 +299,8 @@ function moveGround(){
 
     food.forEach(function(parts){
         if(parts == food[0]){
-            f1Pos -= 5
-            if(f1Pos <= 600 && f1Pos >= 500 && once4 == false){
+            f1Pos -= speed
+            if(f1Pos <= spawnTime && f1Pos >= (spawnTime - 100) && once4 == false){
                 spawnFood(parts)
                 once4 = true
             }
@@ -292,15 +309,15 @@ function moveGround(){
                 once4 = false
                 parts.classList.add("hidden")
             }
-            if(f1Pos < 160 && f1Pos > 0 && jumping == true && !parts.classList.contains("hidden")){
+            if(f1Pos < hamsterWidth && f1Pos > 0 && jumping == true && !parts.classList.contains("hidden")){
                 parts.classList.add("hidden")
                 checkWin()
             }
             parts.style.left = f1Pos + "px"
         }
         if(parts == food[1]){
-            f2Pos -= 5
-            if(f2Pos <= 600 && f2Pos >= 500 && once5 == false){
+            f2Pos -= speed
+            if(f2Pos <= spawnTime && f2Pos >= 500 && once5 == false){
                 spawnFood(parts)
                 once5 = true
             }
@@ -309,15 +326,15 @@ function moveGround(){
                 once5 = false
                 parts.classList.add("hidden")
             }
-            if(f2Pos < 160 && f2Pos > 0 && jumping == true && !parts.classList.contains("hidden")){
+            if(f2Pos < hamsterWidth && f2Pos > 0 && jumping == true && !parts.classList.contains("hidden")){
                 parts.classList.add("hidden")
                 checkWin()
             }
             parts.style.left = f2Pos + "px"
         }
         if(parts == food[2]){
-            f3Pos -= 5
-            if(f3Pos <= 600 && f3Pos >= 500 && once7 == false){
+            f3Pos -= speed
+            if(f3Pos <= spawnTime && f3Pos >= (spawnTime - 100) && once7 == false){
                 spawnFood(parts)
                 once7 = true
             }
@@ -326,15 +343,15 @@ function moveGround(){
                 once7 = false
                 parts.classList.add("hidden")
             }
-            if(f3Pos < 160 && f3Pos > 0 && jumping == true && !parts.classList.contains("hidden")){
+            if(f3Pos < hamsterWidth && f3Pos > 0 && jumping == true && !parts.classList.contains("hidden")){
                 parts.classList.add("hidden")
                 checkWin()
             }
             parts.style.left = f3Pos + "px"
         }
         if(parts == food[3]){
-            f4Pos -= 5
-            if(f4Pos <= 600 && f4Pos >= 500 && once7 == false){
+            f4Pos -= speed
+            if(f4Pos <= spawnTime && f4Pos >= (spawnTime - 100) && once7 == false){
                 spawnFood(parts)
                 once7 = true
             }
@@ -343,7 +360,7 @@ function moveGround(){
                 once7 = false
                 parts.classList.add("hidden")
             }
-            if(f4Pos < 160 && f4Pos > 0 && jumping == true && !parts.classList.contains("hidden")){
+            if(f4Pos < hamsterWidth && f4Pos > 0 && jumping == false && !parts.classList.contains("hidden")){
                 parts.classList.add("hidden")
                 checkWin()
             }

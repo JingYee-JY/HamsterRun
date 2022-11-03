@@ -228,14 +228,14 @@ body{
     margin-bottom: -5px;
     display: flex;
     z-index: 9;
-    height: 24%;
+    height: 170px;
     width: 100%;
     position: relative;
 }
 
 .small, .smallFood{
     position: absolute;
-    height: 50%;
+    height: 85px;
 }
 .small{
     bottom: 0;
@@ -326,5 +326,80 @@ body{
     width: calc(100% - 100px);
     justify-content: center;
     align-items: center;
+    }
+}
+/*ipad*/
+@media screen and (min-width: 768px) and (max-width: 1199px){
+    .start,.game,.final{
+        margin-top: 30px;
+    }
+    .startButton,.readyButton,.againButton,.homeButton{
+        padding: 3% 2.5%;
+        max-width: 300px;
+    }
+    .words{
+        font-size: 30px;
+    }
+    .arrowHead{
+        max-width: 20px;
+    }
+    .startButton{
+        margin-bottom: 200px;
+    }
+    .preview{
+        margin-bottom: -300px;
+    }
+    .text{
+        font-size: 50px;
+    }
+    .background{
+        width: 60%;
+    }
+    .grounds{
+        height: 200px;
+    }
+    .hamster{
+        width: 300px;
+    }
+    .grounds{
+        height: 390px;
+    }
+    .ground{
+        width: 5200px;
+    }
+
+    @keyframes jump{
+        0%{transform: translateY(0px);}
+        30%{transform: translateY(-200px);}
+        70%{transform: translateY(-200px);}
+        100%{transform: translateY(0px);}
+    }
+    .goal{
+        grid-template-columns: repeat(4,20%);
+    }
+    .goalText{
+        font-size: 50px;
+    }
+}
+
+/*desktop*/
+@media screen and (min-width:1200px){
+    body{
+        display: flex;
+        justify-content: center;
+    }
+    .start,.selection, .game, .final, .popUp{
+        max-width: 400px;
+    }
+    .startButton,.againButton,.homeButton{
+        padding: 5%;
+        max-width: 250px;
+    }
+    .confrimButton{
+        padding: 3%;
+        max-width: 250px;
+    }
+    .goal{
+        grid-template-columns: repeat(4,20%);
     }
 }
